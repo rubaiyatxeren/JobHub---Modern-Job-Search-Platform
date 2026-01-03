@@ -10,7 +10,8 @@ A modern, feature-rich job search application built with React that allows users
 ## 📸 Screenshots
 
 ### Home Page with Job Listings
-<img width="1349" height="4358" alt="Screenshot 2026-01-03 at 23-12-35 JobHub - Professional Job Portal" src="https://github.com/user-attachments/assets/bc827262-a31b-41f6-87b1-76ea32912f7e" />
+<img width="1349" height="4917" alt="Screenshot 2026-01-03 at 23-41-21 JobHub - Professional Job Portal" src="https://github.com/user-attachments/assets/3ac40dab-b920-4945-899e-b57b090ea2e1" />
+
 
 
 
