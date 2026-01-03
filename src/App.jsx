@@ -70,6 +70,7 @@ const JobAppContent = () => {
           />
         )}
       </main>
+      <Footer />
     </div>
   );
 };
