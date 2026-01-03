@@ -28,7 +28,6 @@ import React, { useEffect, useState } from "react";
 const JobDetailsModal = ({ isOpen, onClose, job, isSaved, onToggleSave }) => {
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
 
-  // Prevent body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -46,7 +45,6 @@ const JobDetailsModal = ({ isOpen, onClose, job, isSaved, onToggleSave }) => {
 
   if (!isOpen) return null;
 
-  // Format date
   const formatDate = (dateString) => {
     if (!dateString) return "Not specified";
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -56,7 +54,6 @@ const JobDetailsModal = ({ isOpen, onClose, job, isSaved, onToggleSave }) => {
     });
   };
 
-  // Get tags
   const getTags = () => {
     if (!job.tags) return [];
     if (Array.isArray(job.tags)) return job.tags.slice(0, 10);
@@ -77,7 +74,6 @@ const JobDetailsModal = ({ isOpen, onClose, job, isSaved, onToggleSave }) => {
 
   const tags = getTags();
 
-  // Generate and download PDF
   const generatePDF = async () => {
     if (!job) return;
 
@@ -94,7 +90,6 @@ const JobDetailsModal = ({ isOpen, onClose, job, isSaved, onToggleSave }) => {
       pdfContent.style.backgroundColor = "white";
       pdfContent.style.fontFamily = "Arial, sans-serif";
 
-      // Build PDF content
       pdfContent.innerHTML = `
           <div style="margin-bottom: 30px;">
             <h1 style="color: #1e40af; font-size: 28px; margin-bottom: 10px; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
@@ -226,7 +221,6 @@ const JobDetailsModal = ({ isOpen, onClose, job, isSaved, onToggleSave }) => {
 
       document.body.appendChild(pdfContent);
 
-      // Generate PDF using html2canvas and jsPDF
       const canvas = await html2canvas(pdfContent, {
         scale: 2,
         useCORS: true,
@@ -247,7 +241,6 @@ const JobDetailsModal = ({ isOpen, onClose, job, isSaved, onToggleSave }) => {
 
       pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
 
-      // Add page numbers
       const totalPages = pdf.internal.getNumberOfPages();
       for (let i = 1; i <= totalPages; i++) {
         pdf.setPage(i);
@@ -261,7 +254,6 @@ const JobDetailsModal = ({ isOpen, onClose, job, isSaved, onToggleSave }) => {
         );
       }
 
-      // Save the PDF
       pdf.save(
         `${job.title?.replace(/[^a-z0-9]/gi, "_") || "job"}_${Date.now()}.pdf`
       );
@@ -273,7 +265,6 @@ const JobDetailsModal = ({ isOpen, onClose, job, isSaved, onToggleSave }) => {
     }
   };
 
-  // Print job details
   const printJobDetails = () => {
     const printContent = document.createElement("div");
     printContent.style.position = "absolute";
@@ -356,7 +347,6 @@ const JobDetailsModal = ({ isOpen, onClose, job, isSaved, onToggleSave }) => {
     }, 250);
   };
 
-  // Share job via native share API or copy link
   const shareJob = async () => {
     const jobUrl = job.url || window.location.href;
     const jobTitle = job.title || "Job Opportunity";
@@ -788,3 +778,4 @@ const JobDetailsModal = ({ isOpen, onClose, job, isSaved, onToggleSave }) => {
 };
 
 export default JobDetailsModal;
+
