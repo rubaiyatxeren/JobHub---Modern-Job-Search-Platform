@@ -17,7 +17,6 @@ import JobDetailsModal from "./JobDetailsModal";
 const JobCard = ({ job, isSaved, onToggleSave }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Format date for time ago
   const formatTimeAgo = (dateString) => {
     if (!dateString) return "Recently";
 
@@ -35,15 +34,12 @@ const JobCard = ({ job, isSaved, onToggleSave }) => {
     return `${Math.floor(diffDays / 365)}y ago`;
   };
 
-  // Get location
   const location =
     job.candidate_required_location || job.location || job.country || "Remote";
 
-  // Get category
   const category =
     job.category || job.job_type?.replace(/_/g, " ") || "Full-time";
 
-  // Get tags
   const getTags = () => {
     if (!job.tags) return [];
 
@@ -257,3 +253,4 @@ const JobCard = ({ job, isSaved, onToggleSave }) => {
 };
 
 export default JobCard;
+
